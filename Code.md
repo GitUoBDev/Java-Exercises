@@ -1,9 +1,3 @@
-```
-The area of a triangle is computed by taking half the product of its base and height.The area of a triangle is computed by taking half the product of its base and height.The area of a triangle is 
-<br/>
-computed by taking half the product of its base and height.The area of a triangle is computed by taking half the product of its base and height.The area of a triangle is computed by taking half the product of its base and height.
-```
-
 # Basic Problems
 
 ## 1. Celesius to Fahrenheit
@@ -35,7 +29,7 @@ class Main {
 
 <br/>
 
-### 2. Area of a Triangle
+## 2. Area of a Triangle
 
 The area of a triangle is computed by taking half the product of its base and height.
 
