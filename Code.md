@@ -210,6 +210,117 @@ class Main {
 ```
 </details>
 
+# Selection Problems
+
+## 1. Weight/Height Relation
+
+Write a program to find the ideal weight for a given height. The height must be given in centimeters between
+140 cm and 240 cm. The ideal weight is the height minus 100. Before calculating the height check that the input
+is valid?
+<details>
+  <summary> Solution </summary>
+
+```java
+import java.util.Scanner;  // Import the Scanner class
+
+class Main {
+  public static void main(String[] args) {
+
+    Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+
+    System.out.println("Enter height in centimeters (140-240): ");
+    double height = myScanner.nextDouble();
+    double idealWeight = height - 100;
+
+    if(height >= 140 && height <=240 ){
+    System.out.println("Your ideal weight is: " + idealWeight + " kg");  
+    }
+    else { System.out.println("Wrong input"); }
+
+    myScanner.close();
+
+  }
+}
+```
+</details>
+
+<br/>
+
+## 2. Balloons Price
+
+ACE balloon shop sells balloons to customers at 10 fils each. If the customer buys 500 −1000 balloons, the price
+is 8 fils each. If the customer buys over 1000 balloons, the price is 6 fils each. Write a program that reads the
+number of balloons to purchase and prints the amount of the bill?
+
+<details>
+  <summary> Solution </summary>
+
+```java
+import java.util.Scanner;  // Import the Scanner class
+
+class Main {
+  public static void main(String[] args) {
+
+    Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+
+    System.out.println("How many balloons do you want? ");
+    int balloonCount = myScanner.nextInt();
+
+    if(balloonCount >= 500 && balloonCount <=1000 ){
+    System.out.println("Total amount: " + balloonCount * 8 + " fils" );  
+    }
+    else if (balloonCount > 1000) { System.out.println("Total amount: " + balloonCount * 6 + " fils" ); }
+    else { System.out.println("Not enough balloons ordered"); }
+
+    myScanner.close();
+
+  }
+}
+```
+</details>
+
+<br/>
+
+## 3. Employee Wage 
+
+A part time employee is paid BD. 2/000 per hour for the first 20 hours in a week. Additional hours are paid
+BD. 2/500 per hour. In addition the company deducts 5% of the total weekly income for health insurance. Find
+how much (s)he will be paid for any given number of hours?
+<details>
+  <summary> Solution </summary>
+
+```java
+import java.util.Scanner;  // Import the Scanner class
+
+class Main {
+  public static void main(String[] args) {
+
+    Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+
+    System.out.println("Enter hours worked: ");
+    double hoursWorked = myScanner.nextDouble();
+
+    double regularHours = 0;
+    double overTimeHours = 0;
+
+    if( hoursWorked <= 20 ){
+      regularHours = hoursWorked;  
+    }
+    else if ( hoursWorked > 20 ) { 
+      regularHours = 20;  
+      overTimeHours = hoursWorked - 20;  
+    }
+
+    double amountPaid = ( (regularHours * 2.0) + (overTimeHours * 2.5) ) * 0.95;
+    System.out.println("Amount paid: " + amountPaid  + " BD" );
+
+    myScanner.close();
+
+  }
+}
+```
+</details>
+
 <br/>
 
 ## Question Template 
