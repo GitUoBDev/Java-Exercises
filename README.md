@@ -534,6 +534,65 @@ class Human{
 </details> 
 
 
+# Extra: Hotel Example
+
+Make a class hotel
+<details>
+  <summary> Solution </summary>
+
+```java
+import java.util.Scanner;
+
+class Hotel{ 
+
+    private String name;
+    private int rooms;
+    private int resvRooms;
+    private double price;
+    private String[] roomNames;
+    
+    Hotel(String n,int r,int rs,double p){ 
+        name = n; rooms = r; resvRooms = rs; price = p;
+     }
+
+    public String getName(){return this.name;}
+    public void setName(String name){this.name = name;}
+    
+    public void booking(){
+        if(resvRooms<rooms) {resvRooms++; System.out.println("Room Reserved");}
+        else {System.out.println(name + "'s Hotel is full");}
+    }
+
+ }
+
+public class Main {
+    
+    public static void main(String[] args) {
+
+        Hotel[] myHotels = {
+        new Hotel("Hilton1",3,0,2),
+        new Hotel("Hilton2",3,0,2),
+        new Hotel("Hilton3",3,0,2)
+        };
+
+        Hotel h1 = new Hotel("Hilton",3,0,2);
+        Hotel h2 = new Hotel("Movempic",2,0,1);
+
+        System.out.println(h1.getName());
+        h1.setName("Hammam");
+        System.out.println(h1.getName());
+
+        h1.booking();
+        h1.booking();
+        h1.booking();
+        h1.booking();
+        h1.booking();
+
+    }
+  }
+```
+</details> 
+
 <!-- 
 ## Question Template 
 
