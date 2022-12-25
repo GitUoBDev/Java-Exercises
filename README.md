@@ -323,6 +323,218 @@ class Main {
 
 <br/>
 
+# Extra: Tic-Tac-Toe Example
+
+A basic game
+<details>
+  <summary> Solution </summary>
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        char[][] board = new char[3][3];
+        int  square = 0, turns=0;
+        char winner=' ';
+
+        Scanner sc = new Scanner(System.in);
+
+        while(turns!=9){
+            System.out.print("Choose where to play 1-9: ");
+            square = sc.nextInt();
+            int i= (square-1)/3,j=(square-1)%3;
+            if(board[i][j]>0){continue;}
+            board[i][j] = (turns%2==0)?'x':'o';
+
+            for(int row=0;row<board.length;row++){
+                for (int col = 0; col < board[row].length; col++) {
+                    if(board[row][col]>0){System.out.print(board[row][col]+" ");}
+                    else{System.out.print("_ ");}
+                }
+                System.out.println();
+            }
+
+            if(board[i][0]>0&&board[i][0]==board[i][1]&&board[i][1]==board[i][2]){winner=board[i][0];break;}
+            if(board[0][j]>0&&board[0][j]==board[1][j]&&board[1][j]==board[2][j]){winner=board[0][j];break;}
+            if(board[0][0]>0&&board[0][0]==board[1][1]&&board[1][1]==board[2][2]){winner=board[1][1];break;}
+            if(board[0][2]>0&&board[0][2]==board[1][1]&&board[1][1]==board[2][0]){winner=board[1][1];break;}
+
+            turns++;
+        }
+
+        if(winner=='o'||winner=='x'){System.out.println(winner + " wins!");}
+        else{System.out.println("It's a draw!");}
+    }
+  }
+```
+</details>
+
+<br/>
+
+# Extra: Books Example (Using parallel arrays and classes)
+
+Provided the following information
+about a number books (title,pages,subject,owner):
+
+Linear Algebra , 200 , Maths , none Thermodynamics , 700 , Physics , none
+Astrophysics , 500 , Physics , none
+
+Write a program that:
+
+- Prints information for all books
+- Find the physics book with most number of pages
+
+<details>
+<summary>Solution using parallel arrays</summary>
+
+```java
+public class Main{ 
+
+  public static void printInfo(String t,int p,String s,String o){
+    System.out.println("Book: " + t + " - " + p + " pages" 
+  + " ("+ s +") " + "Owner: " + o);}
+
+  public static void main(String[] args){
+
+    String[] titles = {"Linear Algebra","Thermodynamics","Astrophysics"};
+    int[] noPages = {200,700,500};
+    String[] subject = {"Maths","Physics","Physics"};
+    String[] owner = new String[3];
+    
+    // print info for all books
+    System.out.println("\nAll books info:");
+    for (int i = 0; i < titles.length; i++) {
+      printInfo(titles[i],noPages[i],subject[i],owner[i]);
+    }
+    
+    // find physics book with most number of pages
+    int maxPages = noPages[0], maxBookId=0;
+    for (int i = 0; i < titles.length; i++) {
+      if(subject[i].equals("Physics") &&  
+      maxPages<noPages[i])
+      {maxPages=noPages[i]; maxBookId=i;}
+    }
+    System.out.println("\nPhysics book with most number of pages:");
+    printInfo(titles[maxBookId],noPages[maxBookId],subject[maxBookId],owner[maxBookId]);
+
+  } 
+  
+}
+  
+```
+</details>
+
+<details>
+<summary>Solution using classes</summary>
+
+```java
+class Book{
+    public String title;
+    public int noPages;
+    public String subject;
+    public String owner;
+  
+    Book(String t,int p, String s){ title=t; noPages = p; subject = s; }
+    public void printInfo(){System.out.println("Book: " + title + " - " + noPages + " pages" 
+    + " ("+ subject +") " + "Owner: " + owner);}
+    public String getOwner(){return owner;}
+    public void setOwner(String s){owner=s;}
+  }
+  
+  public class Main{ 
+  
+    public static void main(String[] args){
+      
+      Book[] books = {
+        new Book("Linear Algebra", 200 , "Maths"),
+        new Book("Thermodynamics", 700 , "Physics"),
+        new Book("Astrophysics", 500 , "Physics"),
+      };
+      
+      // print info for all books
+      System.out.println("\nAll books info:");
+      for (int i = 0; i < books.length; i++) {
+        books[i].printInfo();
+      }
+  
+      // find physics book with most number of pages
+      int maxPages = books[0].noPages, maxBookId=0;
+      for (int i = 0; i < books.length; i++) {
+        if(books[i].subject.equals("Physics") &&  
+        maxPages<books[i].noPages)
+        {maxPages=books[i].noPages; maxBookId=i;}
+      }
+      System.out.println("\nPhysics book with most number of pages:");
+      books[maxBookId].printInfo();
+  
+    } 
+    
+  }
+    
+```
+</details>
+
+<br/>
+
+# Extra: Cat and Owner
+
+Basic 2 classes interaction example
+<details>
+  <summary> Solution </summary>
+
+```java
+class Human{
+    public String name;
+    Human(String name){ this.name = name; } 
+    public void call(Cat c){ 
+      System.out.println(this.name + " called " + c.name + " the cat");
+      if(this == c.owner){c.purr();}else{c.hiss();} 
+    }
+      public void feed(Cat c){ 
+      System.out.println(this.name + " tried feeding " + c.name + " the cat");
+      if (c.hungerLevel>0) {
+        System.out.println(c.name + " is eating"); c.hungerLevel--;  
+      }else{System.out.println(c.name+" is sleeping");}
+     }
+  }
+  
+  class Cat{
+    public String name;
+    public Human owner; 
+    public int hungerLevel = 3;
+    Cat(String name, Human h){ this.name = name; this.owner = h; } 
+    public void hiss(){System.out.println(this.name + ": Ssss");}
+    public void purr(){System.out.println(this.name + ": Prrr");}
+  }
+  
+  public class Main{ 
+  
+    public static void main(String[] args){
+      
+      Human human1 = new Human("John");
+      Human human2 = new Human("Jack");
+      Cat cat1 =  new Cat("Tom",human1);
+      Cat cat2 =  new Cat("Tim",human2);
+      
+      human1.call(cat1);
+      human1.call(cat2);
+  
+      human1.feed(cat2);
+      human1.feed(cat2);
+      human1.feed(cat2);
+      human1.feed(cat2);
+      human1.feed(cat2);
+    } 
+    
+  }
+    
+```
+</details> 
+
+
+<!-- 
 ## Question Template 
 
 Question Details
@@ -332,4 +544,5 @@ Question Details
 ```java
 
 ```
-</details>
+</details> 
+-->
