@@ -478,6 +478,7 @@ class Book{
 
 <br/>
 
+<!--
 # Extra: Cat and Owner
 
 Basic 2 classes interaction example
@@ -532,7 +533,7 @@ class Human{
     
 ```
 </details> 
-
+-->
 
 # Extra: Hotel Example
 
