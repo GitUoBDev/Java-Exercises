@@ -594,6 +594,112 @@ public class Main {
 ```
 </details> 
 
+
+# Extra: Car class
+
+Make a class car
+<details>
+  <summary> Solution </summary>
+
+```java
+
+import java.util.Scanner;
+
+class Human{public String name="None";Human(String s){name =s;}}
+
+class Car
+{
+
+    public Human driver = new Human("None");
+    public String model;
+    private double speed;
+    public double currentSpeed=0;
+
+    Car(){ }
+
+    Car(String model,double speed){ 
+        this.model = model;
+        this.speed=speed;}
+    
+    public void accelerate(){ currentSpeed+=100;}
+    public void setSpeed(double s){speed = s;}
+    public double getSpeed(){return speed;}
+    public boolean equals(Car c){ 
+
+        if(
+        this.model == c.model &&
+        this.speed == c.speed){return true;}
+        else{return false;}
+
+    }
+
+    public void displayInfo(){
+        System.out.println(
+            "The model is:" +this.model+
+            "The driver is:" +this.driver.name+
+            "The speed is:" +this.speed
+         );
+         System.out.println();
+    }
+
+
+
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+
+        // Car[] cars = new Car[3];
+        // cars[0] = new Car("Nissan",200);
+
+        Car[] cars = {
+            new Car("Porche",200),
+            new Car("Toyota",100),
+            new Car("Mazda",200),
+            new Car("Ferrari",50)
+        };
+
+        cars[0].driver = new Human("Mohamed");
+        double sum=0;int count =0;
+        for (int i = 0; i < cars.length; i++) {
+
+            cars[i].displayInfo();
+
+            if (
+                cars[i].model.equals("Toyota")
+                ||
+                cars[i].model.equals("Porche")
+                ) {
+                    count++;
+                    sum+= cars[i].getSpeed();
+            }
+        }
+        System.out.println(sum/count);
+
+        Car car1 = new Car("Nissan",200);
+        Car car2 = new Car("Nissan",200);
+        System.out.println(car1==car2);
+        System.out.println(car1.equals(car2));
+
+
+        // car1.model = "Mazda";
+        System.out.println(car1.model);
+        System.out.println(car1.currentSpeed);
+        car1.accelerate();
+        car1.accelerate();
+        car1.accelerate();
+        System.out.println(car1.currentSpeed);
+        System.out.println(car1.getSpeed());
+        car1.setSpeed(500);
+        System.out.println(car1.getSpeed());
+
+    }
+
+  }
+
+```
+</details> 
 <!-- 
 ## Question Template 
 
